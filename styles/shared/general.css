@@ -24,6 +24,12 @@ input, select, button {
   font-family: Roboto, Arial;
 }
 
+.order-message {
+  font-size: 18px;
+  margin: 20px;
+  text-align: center;
+}
+
 .button-primary {
   color: rgb(33, 33, 33);
   background-color: rgb(255, 216, 20);

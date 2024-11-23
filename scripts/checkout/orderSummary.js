@@ -5,10 +5,14 @@ import {hello} from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import {deliveryOptions, getDeliveryOption} from '../../data/deliveryOptions.js';
 import {renderPaymentSummary} from './paymentSummary.js';
+import { updateCartQuantity } from '../../data/cart.js';
 
+
+const totalQuantity = localStorage.getItem('cartQuantity');
+document.querySelector('.js-cart-quantity').textContent = totalQuantity; 
 export function renderOrderSummary() {
   let cartSummaryHTML = '';
-
+ 
   cart.forEach((cartItem) => {
     const productId = cartItem.productId;
 
@@ -17,7 +21,7 @@ export function renderOrderSummary() {
     const deliveryOptionId = cartItem.deliveryOptionId;
 
     const deliveryOption = getDeliveryOption(deliveryOptionId);
-
+  
     const today = dayjs();
     const deliveryDate = today.add(
       deliveryOption.deliveryDays,
@@ -51,9 +55,6 @@ export function renderOrderSummary() {
               <span>
                 Quantity: <span class="quantity-label">${cartItem.quantity}</span>
               </span>
-              <span class="update-quantity-link link-primary">
-                Update
-              </span>
               <span class="delete-quantity-link link-primary js-delete-link
                 js-delete-link-${matchingProduct.id}"
                 data-product-id="${matchingProduct.id}">
@@ -73,6 +74,8 @@ export function renderOrderSummary() {
     `;
   });
 
+ 
+
   function deliveryOptionsHTML(matchingProduct, cartItem) {
     let html = '';
 
@@ -87,8 +90,8 @@ export function renderOrderSummary() {
       );
 
       const priceString = deliveryOption.priceCents === 0
-        ? 'FREE'
-        : `$${formatCurrency(deliveryOption.priceCents)} -`;
+        ? 'Ksh 500'
+        : `Ksh ${formatCurrency(deliveryOption.priceCents)} -`;
 
       const isChecked = deliveryOption.id === cartItem.deliveryOptionId;
 
@@ -128,7 +131,7 @@ export function renderOrderSummary() {
           `.js-cart-item-container-${productId}`
         );
         container.remove();
-
+        updateCartQuantity();
         renderPaymentSummary();
       });
     });

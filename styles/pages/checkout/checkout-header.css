@@ -23,7 +23,8 @@
 }
 
 .checkout-header-left-section {
-  width: 150px;
+  width: 50%;
+  justify-content: center ;
 }
 
 .amazon-logo {
@@ -59,7 +60,7 @@
   flex: 1;
   flex-shrink: 0;
   text-align: center;
-
+  width: 40%;
   font-size: 25px;
   font-weight: 500;
 
@@ -93,7 +94,8 @@
 
 .checkout-header-right-section {
   text-align: right;
-  width: 150px;
+  width: 10%;
+  justify-content: center;
 }
 
 @media (max-width: 1000px) {

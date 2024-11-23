@@ -18,7 +18,7 @@ export function loadFromStorage() {
   }
 }
 
-function saveToStorage() {
+export function saveToStorage() {
   localStorage.setItem('cart', JSON.stringify(cart));
 }
 
@@ -53,7 +53,7 @@ export function removeFromCart(productId) {
   saveToStorage();
 }
 
-function updateCartQuantity() {
+export function updateCartQuantity() {
   const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
   localStorage.setItem('cartQuantity', totalQuantity); // Save to local storage
   document.querySelector('.js-cart-quantity').textContent = totalQuantity; // Update display
@@ -71,4 +71,10 @@ export function updateDeliveryOption(productId, deliveryOptionId) {
   matchingItem.deliveryOptionId = deliveryOptionId;
 
   saveToStorage();
+}
+
+export function clearCart() {
+    cart = [];
+    saveToStorage();
+    updateCartQuantity(); // Update the displayed cart quantity
 }
