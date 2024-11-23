@@ -7,6 +7,19 @@ document.addEventListener('DOMContentLoaded', () => {
   if (savedQuantity) {
       document.querySelector('.js-cart-quantity').textContent = savedQuantity; // Set initial display
   }
+
+  // Add event listener for the search input
+  const searchInput = document.getElementById('search-input');
+  searchInput.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault(); // Prevent the default form submission
+      const query = searchInput.value.trim();
+      if (query) {
+        // Redirect to the search results page with the query
+        window.location.href = `search.html?query=${encodeURIComponent(query)}`;
+      }
+    }
+  });
 });
 
 let productsHTML = '';

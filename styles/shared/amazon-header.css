@@ -96,6 +96,10 @@
   border-bottom-right-radius: 0;
 }
 
+.search-b{
+  cursor: pointer;
+}
+
 .search-button {
   background-color: rgb(254, 189, 105);
   border: none;
